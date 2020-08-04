@@ -17,7 +17,6 @@
 
 .list-item {
     border: 1px solid darken($color: $off-white, $amount: 7%);
-    border-top: none;
     color: $dark-grey;
     display: flex;
     flex-direction: column;
@@ -43,6 +42,10 @@
     &:hover {
         background: none;
     }
+}
+
+.list-item--full-length {
+    width: 100%;
 }
 
 .list-item__title {

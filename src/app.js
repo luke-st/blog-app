@@ -9,6 +9,7 @@ import 'react-dates/lib/css/_datepicker.css'
 import 'normalize.css/normalize.css'
 import './styles/styles.scss'
 import { firebase } from './firebase/firebase'
+import { startSetBloggers } from './actions/bloggers'
 
 const store = configureStore()
 
@@ -41,3 +42,5 @@ firebase.auth().onAuthStateChanged((user) => {
         history.push('/')
     }
 })
+
+store.dispatch(startSetBloggers())

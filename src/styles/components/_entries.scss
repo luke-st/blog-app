@@ -1,0 +1,22 @@
+.grid {
+    display: flex;                       /* establish flex container */
+    flex-wrap: wrap;                     /* enable flex items to wrap */
+    justify-content: space-between;
+    
+  }
+  .cell {
+    background: fade-out($color: $off-white, $amount: .15);
+    border-radius: 3px;
+    padding-left: $m-size;
+    padding-top: $s-size;
+    padding-bottom: $s-size;
+    text-align: left;
+    width: 18rem;
+    height: 15rem;
+    span {
+        font-weight: bold;
+    }
+    p {
+        font-weight: 300;
+    }
+  }
