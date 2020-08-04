@@ -8,10 +8,14 @@ import selectEntries from '../selectors/entries'
 const HomePage = (props) => (
     <div>
         <Header />
+        <div className='page-header'>
+            <div className='content-container'>
+                <BlogListFilters bloggers={props.bloggers} />
+            </div>
+        </div>
         <div className='content-container'>
-            <BlogListFilters bloggers={props.bloggers} />
             <BlogList entries={props.entries}/>
-        </div>    
+        </div>
     </div>
 );
 
