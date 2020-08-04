@@ -1,11 +1,14 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const BlogListItem = (props) => (
     <div>
-        <div className='cell'>
-        <span>{props.title}</span>
-        <p>{props.subtitle}</p>
-        </div>
+        <Link to={`read/${props.uid}/${props.id}`} style={{ textDecoration: 'none'}}>
+            <div className='cell'>
+                <span>{props.title}</span>
+                <p>{props.subtitle}</p>
+            </div>
+        </Link>
     </div>
 );
 

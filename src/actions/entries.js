@@ -14,6 +14,7 @@ export const getBloggerEntries = (uid) => {
                 const id = entry.key
                 entry = entry.val()
                 entries.push({
+                    uid,
                     id,
                     title: entry.title,
                     subtitle: entry.subtitle
@@ -23,3 +24,4 @@ export const getBloggerEntries = (uid) => {
         })
     }
 }
+

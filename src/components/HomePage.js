@@ -18,7 +18,7 @@ const HomePage = (props) => (
 const mapStateToProps = (state) => {
     return {
         entries: selectEntries(state.entries, state.filters),
-        bloggers: state.bloggers
+        bloggers: state.bloggers,
     }
 }
 

@@ -29,6 +29,8 @@ const renderApp = () => {
 
 ReactDOM.render(<LoadingPage />, document.getElementById('app'))
 
+store.dispatch(startSetBloggers())
+
 firebase.auth().onAuthStateChanged((user) => {
     if (user) {
         store.dispatch(login(user.uid))
@@ -39,8 +41,8 @@ firebase.auth().onAuthStateChanged((user) => {
     } else {
         store.dispatch(logout())
         renderApp()
-        history.push('/')
+        history.listen((location, action) => {
+            console.log(location, action)
+        })
     }
 })
-
-store.dispatch(startSetBloggers())

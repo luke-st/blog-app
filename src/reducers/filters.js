@@ -4,7 +4,8 @@ import moment from 'moment'
 const filtersReducerDefaultState = {
     text: '',
     startDate: moment().startOf('month'),
-    endDate: moment().endOf('month')
+    endDate: moment().endOf('month'),
+    uid: ''
 }
 
 const filtersReducer = (state = filtersReducerDefaultState, action) => {
@@ -23,6 +24,11 @@ const filtersReducer = (state = filtersReducerDefaultState, action) => {
             return {
                 ...state,
                 endDate: action.date
+            }
+        case 'SET_UID':
+            return {
+                ...state,
+                uid: action.uid
             }
         default:
             return state

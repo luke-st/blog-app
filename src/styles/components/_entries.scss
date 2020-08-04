@@ -1,22 +1,33 @@
 .grid {
-    display: flex;                       /* establish flex container */
-    flex-wrap: wrap;                     /* enable flex items to wrap */
-    justify-content: space-between;
-    
+  display: flex;                       /* establish flex container */
+  flex-wrap: wrap;                     /* enable flex items to wrap */
+  justify-content: space-between;   
+}
+.cell {
+  background: fade-out($color: $off-white, $amount: .15);
+  border-radius: 3px;
+  padding-left: $m-size;
+  padding-top: $s-size;
+  padding-bottom: $s-size;
+  text-align: left;
+  width: 18rem;
+  height: 15rem;
+  color: black;
+  span {
+    font-weight: bold;
   }
-  .cell {
-    background: fade-out($color: $off-white, $amount: .15);
-    border-radius: 3px;
-    padding-left: $m-size;
-    padding-top: $s-size;
-    padding-bottom: $s-size;
-    text-align: left;
-    width: 18rem;
-    height: 15rem;
-    span {
-        font-weight: bold;
-    }
-    p {
-        font-weight: 300;
-    }
+  p {
+    font-weight: 300;
   }
+}
+
+.entry {
+  border: 1px solid darken($color: $off-white, $amount: 7%);
+  color: $dark-grey;
+  display: flex;
+  flex-direction: column;
+  padding: $s-size;
+  text-decoration: none;
+  width: 100%;
+  height: max-content;
+}

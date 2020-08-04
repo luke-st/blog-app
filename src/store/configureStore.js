@@ -1,6 +1,7 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
 import thunk from 'redux-thunk'
 import authReducer from '../reducers/auth'
+import entriesReducer from '../reducers/entries'
 import entryReducer from '../reducers/entry'
 import filtersReducer from '../reducers/filters'
 import bloggersReducer from '../reducers/bloggers'
@@ -11,7 +12,8 @@ export default () => {
     const store = createStore(
         combineReducers({
             auth: authReducer,
-            entries: entryReducer,
+            entries: entriesReducer,
+            entry: entryReducer,
             bloggers: bloggersReducer,
             filters: filtersReducer
         }),
