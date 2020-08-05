@@ -1,6 +1,7 @@
 import React from 'react'
 import moment from 'moment'
 import { history } from '../routers/AppRouter'
+import RemoveModal from './RemoveModal'
 
 export default class BlogForm extends React.Component {
     constructor(props) {
@@ -11,8 +12,9 @@ export default class BlogForm extends React.Component {
             body: props.entry ? props.entry.body : '',
             subtitle: props.entry ? props.entry.subtitle : '',
             createdAt: props.entry ? moment(props.entry.createdAt) : moment(),
-            error: ''
-        } 
+            error: '',
+            promptRemove: undefined
+        }
     }
     onTitleChange = (e) => {
         const title = e.target.value
@@ -30,9 +32,9 @@ export default class BlogForm extends React.Component {
         e.preventDefault()
         const uid = this.props.uid
         if (!this.state.title || !this.state.body) {
-            this.setState(() => ({ error: 'Please provide a title and body for your post.'}))
+            this.setState(() => ({ error: 'Please provide a title and body for your post.' }))
         } else {
-            this.setState(() => ({ error: ''}))
+            this.setState(() => ({ error: '' }))
             const post = {
                 title: this.state.title,
                 subtitle: this.state.subtitle,
@@ -43,37 +45,61 @@ export default class BlogForm extends React.Component {
             history.push('/')
         }
     }
-    render () {
+    handleClearPromptRemove = () => {
+        this.setState(() => ({ promptRemove: undefined }))
+    }
+    onRemove = () => {
+        this.setState(() => ({ promptRemove: true }))
+    }
+    onRemoveConfirm = () => {
+        this.props.removeEntry(this.props.uid, this.props.id)
+        this.props.history.push('/')
+    }
+    render() {
         return (
-            <form className='form' onSubmit={this.onSubmit}>
-            {this.state.error && <p className='form__error'>{this.state.error}</p>}
-                <input
-                    className='text-input'
-                    type='text'
-                    placeholder='Title'
-                    autoFocus
-                    value={this.state.title}
-                    onChange={this.onTitleChange}
-                />
-                <input
-                    className='text-input'
-                    type='text'
-                    placeholder='Subtitle'
-                    autoFocus
-                    value={this.state.subtitle}
-                    onChange={this.onSubtitleChange}
-                />
-                <textarea
-                    className='textarea'
-                    placeholder='Write your post here!'
-                    value={this.state.body}
-                    onChange={this.onBodyChange}
-                >
-                </textarea>
+            <div>
+                <form className='form' onSubmit={this.onSubmit}>
+                    {this.state.error && <p className='form__error'>{this.state.error}</p>}
+                    <input
+                        className='text-input'
+                        type='text'
+                        placeholder='Title'
+                        autoFocus
+                        value={this.state.title}
+                        onChange={this.onTitleChange}
+                    />
+                    <input
+                        className='text-input'
+                        type='text'
+                        placeholder='Subtitle'
+                        autoFocus
+                        value={this.state.subtitle}
+                        onChange={this.onSubtitleChange}
+                    />
+                    <textarea
+                        className='textarea'
+                        placeholder='Write your post here!'
+                        value={this.state.body}
+                        onChange={this.onBodyChange}
+                    >
+                    </textarea>
+                    <div>
+                        <button className='button'>Save entry</button>
+                    </div>
+                </form>
                 <div>
-                <button className='button'>Save entry</button>
+                    {this.props.mode === 'edit' ? (
+                        <button className='button button--delete' onClick={this.onRemove}>Delete entry</button>
+                    ) : null}
+                    <div>
+                        <RemoveModal
+                            promptRemove={this.state.promptRemove}
+                            handleClearPromptRemove={this.handleClearPromptRemove}
+                            onRemoveConfirm={this.onRemoveConfirm}
+                        />
+                    </div>
                 </div>
-            </form>
+            </div>
         )
     }
 }

@@ -39,3 +39,9 @@ export const editEntry = (uid, {title, subtitle, createdAt, body}, id) => {
         })
     }
 }
+
+export const removeEntry = (uid, id) => {
+    return (dispatch) => {
+        database.ref(`users/${uid}/posts/${id}`).remove()
+    }
+}
