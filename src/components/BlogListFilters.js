@@ -1,14 +1,14 @@
 import React from 'react'
-import { getBloggerEntries } from '../actions/entries'
+import { getBloggerEntries, resetEntries } from '../actions/entries'
 import { connect } from 'react-redux'
-import { setTextFilter, setEndDate, setStartDate } from '../actions/filters'
+import { setTextFilter, setEndDate, setStartDate, setUID } from '../actions/filters'
 import { DateRangePicker } from 'react-dates'
 import 'react-dates/initialize'
 
 class BlogListFilters extends React.Component {
     state = {
         calendarFocused: null,
-        activeBlogger: ''
+        activeBlogger: null
     }
     onDatesChange = ({ startDate, endDate }) => {
         this.props.setStartDate(startDate)
@@ -19,11 +19,14 @@ class BlogListFilters extends React.Component {
     }
     onVloggerChange = (e) => {
         const uid = e.target.value
-        this.setState({ activeBlogger: uid })
+        this.setState({ activeBlogger:uid })
         this.props.getBloggerEntries(uid)
     }
     onTextChange = (e) => {
         this.props.setTextFilter(e.target.value)
+    }
+    componentWillUnmount = () => {
+        this.props.resetEntries()
     }
     render() {
         return (
@@ -76,14 +79,16 @@ class BlogListFilters extends React.Component {
 
 const mapStateToProps = (state) => ({
     filters: state.filters,
-    bloggers: state.bloggers
+    bloggers: state.bloggers,
+    entries: state.entries
 })
 
 const mapDispatchtoProps = (dispatch) => ({
     getBloggerEntries: (uid) => dispatch(getBloggerEntries(uid)),
     setTextFilter: (text) => dispatch(setTextFilter(text)),
     setStartDate: (startDate) => dispatch(setStartDate(startDate)),
-    setEndDate: (endDate) => dispatch(setEndDate(endDate))
+    setEndDate: (endDate) => dispatch(setEndDate(endDate)),
+    resetEntries: () => dispatch(resetEntries())
 })
 
 export default connect(mapStateToProps, mapDispatchtoProps)(BlogListFilters)

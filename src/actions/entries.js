@@ -5,6 +5,10 @@ export const setEntries = (entries) => ({
     entries
 })
 
+export const resetEntries = () => ({
+    type: "RESET_ENTRIES"
+})
+
 export const getBloggerEntries = (uid) => {
     return (dispatch) => {
         database.ref(`users/${uid}/posts`).once('value').then((snapshot) => {

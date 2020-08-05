@@ -22,6 +22,8 @@ const entriesReducer = (state = entriesReducerDefaultState, action) => {
             })
         case 'SET_ENTRIES':
             return action.entries
+        case 'RESET_ENTRIES':
+            return entriesReducerDefaultState
         default:
             return state
     }
