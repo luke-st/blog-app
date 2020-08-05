@@ -19,7 +19,7 @@ class ReadPage extends React.Component {
     render() {
         return (
             <div>
-                <Header />
+                <Header auth={this.props.auth}/>
                 {console.log(this.props.entry)}
                 <Entry {...this.props.entry}/>
             </div>
@@ -29,7 +29,8 @@ class ReadPage extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        entry: state.entry
+        entry: state.entry,
+        auth: state.auth
     }
 }
 const mapDispatchToProps = (dispatch) => ({

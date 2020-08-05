@@ -8,7 +8,7 @@ import 'react-dates/initialize'
 class BlogListFilters extends React.Component {
     state = {
         calendarFocused: null,
-        activeBlogger: null
+        activeBlogger: this.props.auth.uid ? this.props.auth.uid : null,
     }
     onDatesChange = ({ startDate, endDate }) => {
         this.props.setStartDate(startDate)
@@ -25,6 +25,9 @@ class BlogListFilters extends React.Component {
     onTextChange = (e) => {
         this.props.setTextFilter(e.target.value)
     }
+    componentDidMount = () => {
+        this.props.getBloggerEntries(this.state.activeBlogger)
+    }
     componentWillUnmount = () => {
         this.props.resetEntries()
     }
@@ -34,6 +37,7 @@ class BlogListFilters extends React.Component {
                 <div className='input-group'>
                     <div className='input-group__item'>
                         <select className='select'
+                            value={this.state.activeBlogger}
                             onChange={this.onVloggerChange}
                         >
                         <option default>Choose a blogger</option>
@@ -67,7 +71,7 @@ class BlogListFilters extends React.Component {
                 <div className='page-header__title'>
                 {this.props.bloggers.map((blogger) => blogger.uid === this.state.activeBlogger ? (
                     <div key={blogger.uid}>
-                    <p><span>{blogger.name}</span> has <span>{blogger.posts}</span> post{blogger.posts === 1 ? '' : 's'}</p>
+                    <p><span>{blogger.name.split(' ')[0]}</span> has <span>{blogger.posts}</span> post{blogger.posts === 1 ? '' : 's'}</p>
                     </div>
                 ) : null
                 )}
@@ -80,7 +84,8 @@ class BlogListFilters extends React.Component {
 const mapStateToProps = (state) => ({
     filters: state.filters,
     bloggers: state.bloggers,
-    entries: state.entries
+    entries: state.entries,
+    auth: state.auth
 })
 
 const mapDispatchtoProps = (dispatch) => ({

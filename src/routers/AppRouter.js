@@ -9,6 +9,7 @@ import PublicRoute from './PublicRoute';
 import HomePage from '../components/HomePage'
 import ReadPage from '../components/ReadPage';
 import EditPage from '../components/EditPage';
+import AddPage from '../components/AddPage';
 
 export const history = createBrowserHistory()
 
@@ -16,11 +17,11 @@ const AppRouter = () => (
     <Router history={history}>
     <div>
         <Switch>
-            <PublicRoute exact path="/" component={HomePage} />
-            <PublicRoute exact path="/read/:uid/:id" component={ReadPage} />
+            <Route exact path="/" component={HomePage} />
+            <Route exact path="/read/:uid/:id" component={ReadPage} />
             <PublicRoute exact path="/login" component={LoginPage} />
-            <PrivateRoute exact path="/edit/:id" component={EditPage} />
-            <PrivateRoute exact path="/dashboard" component={DashboardPage} />
+            <PrivateRoute exact path="/add/:uid/" component={AddPage} />
+            <PrivateRoute exact path="/edit/:uid/:id" component={EditPage} />
             <Route component={NotFoundPage} />
         </Switch>
     </div>

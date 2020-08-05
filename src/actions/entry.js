@@ -17,3 +17,14 @@ export const getEntry = (uid, id) => {
         });
     };
 };
+
+export const addEntry = (uid, {title, subtitle, createdAt, body}) => {
+    return (dispatch) => {
+        const post = { title, subtitle, createdAt, body }
+        database.ref(`users/${uid}/posts/`).push(post).then((ref) => {
+            console.log('post pushed', ref.key)
+        }).catch((e) => {
+            console.log(e)
+        })
+    }
+}

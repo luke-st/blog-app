@@ -1,8 +1,9 @@
-import { firebase, googleAuthProvider } from '../firebase/firebase'
+import database, { firebase, googleAuthProvider } from '../firebase/firebase'
 
-export const login = (uid) => ({
+export const login = (uid, displayname) => ({
     type: 'LOGIN',
-    uid
+    uid,
+    displayname
 })
 
 export const startLogin = () => {
@@ -17,6 +18,17 @@ export const startLoginEmail = (email, password) => {
 
 export const startEmailSignup = (email, password) => {
     return firebase.auth().createUserWithEmailAndPassword(email, password)
+}
+
+export const accountCheck = (uid, displayname) => {
+    database.ref(`users/${uid}`).once('value').then((snapshot) => {
+        const userData = snapshot.val()
+        if (!userData) {
+            database.ref(`users/${uid}`).set({name: displayname}).then(() => {
+                console.log(`Account Created! Welcome ${displayname}`)
+            })
+        }
+    })
 }
 
 export const logout = () => ({

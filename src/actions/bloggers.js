@@ -7,16 +7,26 @@ export const setBloggers = (bloggers) => ({
 
 export const startSetBloggers = () => {
     return (dispatch) => {
-        return database.ref('users').once('value').then((snapshot) => {
+        return database.ref('users').on('value', (snapshot) => {
             const bloggers = []
     
             snapshot.forEach((blogger) => {
                 const uid = blogger.key
                 blogger = blogger.val()
+                const name = blogger.name
+                console.log(blogger.posts)
+                let posts
+                if (!blogger.posts) {
+                    console.log('nulled')
+                    posts = [null]
+                } else {
+                    posts = blogger.posts
+                }
+                const postsLength = Object.keys(posts).length
                 bloggers.push({
                     uid,
-                    name: blogger.name,
-                    posts: blogger.posts.length - 1
+                    name,
+                    posts: postsLength
                 })
             })
             dispatch(setBloggers(bloggers))
