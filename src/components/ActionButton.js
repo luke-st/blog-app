@@ -1,6 +1,6 @@
 import React from 'react'
 import Fab from '@material-ui/core/Fab'
-import Icon from '@material-ui/core/icon/';
+import Icon from '@material-ui/core/icon';
 
 const ActionButton = (props, classes) => (
     <div className='fab-container'>
