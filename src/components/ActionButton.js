@@ -5,7 +5,7 @@ import CreateIcon from '@material-ui/icons/Create';
 const ActionButton = (props, classes) => (
     <div className='fab-container'>
         <Fab color="primary" aria-label="add" className={classes.margin}>
-            <CreateIcon />
+            <CreateIcon fontSize={'large'} />
         </Fab>
     </div>
 )

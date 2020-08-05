@@ -1,6 +1,5 @@
 import React from 'react'
-import Fab from '@material-ui/core/Fab'
-import CreateIcon from '@material-ui/icons/Create';
+import ActionButton from './ActionButton'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import BlogListItem from './BlogListItem'
@@ -22,11 +21,7 @@ const BlogList = (props, classes) => (
         </div>
         {props.auth.uid ? (
             <Link to={`/add/${props.auth.uid}`}>
-                <div className='fab-container'>
-                    <Fab color="primary" aria-label="add" className={classes.margin}>
-                        <CreateIcon />
-                    </Fab>
-                </div>
+                <ActionButton />
             </Link>
         ) : null}
     </div>
