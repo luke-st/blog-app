@@ -1,14 +1,12 @@
 .grid {
-  display: flex;                       /* establish flex container */
-  flex-wrap: wrap;                     /* enable flex items to wrap */
+  display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;   
 }
 .cell {
   background: fade-out($color: $off-white, $amount: .15);
   border-radius: 3px;
-  padding-left: $m-size;
-  padding-top: $s-size;
-  padding-bottom: $s-size;
+  padding: $s-size;
   text-align: left;
   width: 18rem;
   height: 15rem;

@@ -36,14 +36,8 @@ firebase.auth().onAuthStateChanged((user) => {
         store.dispatch(login(user.uid, user.displayName.split(' ')))
         accountCheck(user.uid, user.displayName)
         renderApp()
-        if (history.location.pathname === '/') {
-            // history.push('/dashboard')
-        }
     } else {
         store.dispatch(logout())
         renderApp()
-        history.listen((location, action) => {
-            console.log(location, action)
-        })
     }
 })

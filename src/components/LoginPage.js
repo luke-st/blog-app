@@ -1,7 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { startLogin, startLoginEmail } from '../actions/auth'
-import EmailModal from './EmailModal'
+import { startLogin } from '../actions/auth'
 
 export class LoginPage extends React.Component {
     state = {
@@ -21,14 +20,9 @@ export class LoginPage extends React.Component {
                         <h1 className="box-layout__title">YouBlog</h1>
                         <div className='form'>
                         <button className="button" id='googleButton' onClick={this.props.startLogin}>Login with Google</button>
-                        <button className="button" onClick={this.handleEmailPrompt}>Login/Create Account with Email</button>
                         </div>
                     </div>
                 </div>
-                <EmailModal 
-                    emailPrompt={this.state.emailPrompt}
-                    handleClearEmailPrompt={this.handleClearEmailPrompt}
-                />
             </div>
         )
     }

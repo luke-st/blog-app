@@ -1,7 +1,12 @@
 import moment from 'moment'
 
-const getVisibleEntries = (entries, { text, startDate, endDate, }) => {
+const getVisibleEntries = (entries, filters) => {
     // return entries
+    const {
+        text = '', 
+        startDate = 0, 
+        endDate = 0
+    } = filters
     return entries.filter((entry) => {
         const createdAtMoment = moment(entry.createdAt)
         const startDateMatch = startDate ? startDate.isSameOrBefore(createdAtMoment, 'day') : true

@@ -22,7 +22,18 @@ export const addEntry = (uid, {title, subtitle, createdAt, body}) => {
     return (dispatch) => {
         const post = { title, subtitle, createdAt, body }
         database.ref(`users/${uid}/posts/`).push(post).then((ref) => {
-            console.log('post pushed', ref.key)
+            console.log('post pushed: ', ref.key)
+        }).catch((e) => {
+            console.log(e)
+        })
+    }
+}
+
+export const editEntry = (uid, {title, subtitle, createdAt, body}, id) => {
+    return (dispatch) => {
+        const post = { title, subtitle, createdAt, body }
+        database.ref(`users/${uid}/posts/${id}`).update(post).then((ref) => {
+            console.log('post edited!')
         }).catch((e) => {
             console.log(e)
         })

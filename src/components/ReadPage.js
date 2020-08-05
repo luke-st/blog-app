@@ -1,8 +1,12 @@
 import React from 'react'
+import Fab from '@material-ui/core/Fab'
+import Icon from '@material-ui/core/icon/';
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 import { Header } from './Header'
 import Entry from './Entry'
 import { getEntry, exitEntry } from "../actions/entry"
+import ActionButton from './ActionButton';
 
 class ReadPage extends React.Component {
     constructor(props) {
@@ -14,14 +18,19 @@ class ReadPage extends React.Component {
         this.props.getEntry(this.props.match.params.uid, this.props.match.params.id)
     }
     componentWillUnmount = () => {
-        this.props.exitEntry()
+        // this.props.exitEntry()
     }
     render() {
+        const { classes } = this.props;
         return (
             <div>
-                <Header auth={this.props.auth}/>
-                {console.log(this.props.entry)}
-                <Entry {...this.props.entry}/>
+                <Header auth={this.props.auth} />
+                <Entry {...this.props.entry} />
+                <Link to={`/edit/${this.props.match.params.uid}/${this.props.match.params.id}`}>
+                    <div className='fab-container'>
+                        <ActionButton />
+                    </div>
+                </Link>
             </div>
         )
     }
