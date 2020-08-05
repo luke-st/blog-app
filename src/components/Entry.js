@@ -10,7 +10,6 @@ const Entry = (props) => (
         </div>
         <div className='content-container'>
             <div className='entry'>
-            {console.log(props)}
                 <p>{props.body}</p>
             </div>
         </div>

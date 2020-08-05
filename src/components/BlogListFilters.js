@@ -8,7 +8,7 @@ import 'react-dates/initialize'
 class BlogListFilters extends React.Component {
     state = {
         calendarFocused: null,
-        activeBlogger: this.props.auth.uid ? this.props.auth.uid : null,
+        activeBlogger: this.props.auth.uid ? this.props.auth.uid : '',
     }
     onDatesChange = ({ startDate, endDate }) => {
         this.props.setStartDate(startDate)

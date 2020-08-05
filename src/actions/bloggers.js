@@ -14,7 +14,6 @@ export const startSetBloggers = () => {
                 const uid = blogger.key
                 blogger = blogger.val()
                 const name = blogger.name
-                console.log(blogger.posts)
                 let posts
                 if (!blogger.posts) {
                     console.log('nulled')

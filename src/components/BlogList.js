@@ -20,13 +20,15 @@ const BlogList = (props, classes) => (
                     )
             }
         </div>
-        <Link to={`/add/${props.auth.uid}`}>
-            <div className='fab-container'>
-                <Fab color="primary" aria-label="add" className={classes.margin}>
-                    <Icon style={{ fontSize: '3rem' }}>create</Icon>
-                </Fab>
-            </div>
-        </Link>
+        {props.auth.uid ? (
+            <Link to={`/add/${props.auth.uid}`}>
+                <div className='fab-container'>
+                    <Fab color="primary" aria-label="add" className={classes.margin}>
+                        <Icon style={{ fontSize: '3rem' }}>create</Icon>
+                    </Fab>
+                </div>
+            </Link>
+        ) : null}
     </div>
 )
 

@@ -6,17 +6,16 @@ import { history } from '../routers/AppRouter'
 
 const onClick = () => history.push('/login')
 
-export const Header = ({ startLogout, auth }) => (
+export const Header = (props) => (
     <header className="header">
         <div className='content-container'>
             <div className='header__content'>
                 <Link className="header__title" to="/">
                     <h1>YouBlog</h1>
                 </Link>
-                {console.log(auth)}
-                {auth.displayname ? (
+                {props.auth.displayname ? (
                     <div className='header__name'>
-                    <p>Hi, <span>{auth.displayname[0]}</span><button className='button button--link' onClick={startLogout}>Logout</button></p>
+                    <p>Hi, <span>{props.auth.displayname[0]}</span><button className='button button--link' onClick={props.startLogout}>Logout</button></p>
                     </div>
                 ) : (
                     <button className='button button--link' id='loginbutton' onClick={onClick}>Login</button>
