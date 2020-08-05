@@ -16,7 +16,6 @@ export const startSetBloggers = () => {
                 const name = blogger.name
                 let posts
                 if (!blogger.posts) {
-                    console.log('nulled')
                     posts = [null]
                 } else {
                     posts = blogger.posts

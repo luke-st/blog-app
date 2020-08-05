@@ -24,9 +24,7 @@ export const accountCheck = (uid, displayname) => {
     database.ref(`users/${uid}`).once('value').then((snapshot) => {
         const userData = snapshot.val()
         if (!userData) {
-            database.ref(`users/${uid}`).set({name: displayname}).then(() => {
-                console.log(`Account Created! Welcome ${displayname}`)
-            })
+            database.ref(`users/${uid}`).set({name: displayname})
         }
     })
 }
