@@ -11,7 +11,7 @@ export const resetEntries = () => ({
 
 export const getBloggerEntries = (uid) => {
     return (dispatch) => {
-        database.ref(`users/${uid}/posts`).once('value').then((snapshot) => {
+        return database.ref(`users/${uid}/posts`).once('value').then((snapshot) => {
             const entries = []
     
             snapshot.forEach((entry) => {

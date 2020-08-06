@@ -5,10 +5,6 @@ export const setEntry = (entry) => ({
     entry
 });
 
-export const exitEntry = () => ({
-    type: "RESET"
-});
-
 export const getEntry = (uid, id) => {
     return (dispatch) => {
         database.ref(`users/${uid}/posts/${id}`).once('value').then((snapshot) => {
@@ -21,22 +17,14 @@ export const getEntry = (uid, id) => {
 export const addEntry = (uid, {title, subtitle, createdAt, body}) => {
     return (dispatch) => {
         const post = { title, subtitle, createdAt, body }
-        database.ref(`users/${uid}/posts/`).push(post).then((ref) => {
-            console.log('post pushed: ', ref.key)
-        }).catch((e) => {
-            console.log(e)
-        })
+        database.ref(`users/${uid}/posts/`).push(post)
     }
 }
 
 export const editEntry = (uid, {title, subtitle, createdAt, body}, id) => {
     return (dispatch) => {
         const post = { title, subtitle, createdAt, body }
-        database.ref(`users/${uid}/posts/${id}`).update(post).then((ref) => {
-            console.log('post edited!')
-        }).catch((e) => {
-            console.log(e)
-        })
+        database.ref(`users/${uid}/posts/${id}`).update(post)
     }
 }
 

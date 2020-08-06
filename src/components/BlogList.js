@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import BlogListItem from './BlogListItem'
 
-const BlogList = (props, classes) => (
+export const BlogList = (props, classes) => (
     <div className='content-container'>
         <div className='grid'>
             {

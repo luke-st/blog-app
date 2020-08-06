@@ -4,10 +4,10 @@ import { Link } from 'react-router-dom'
 import { Header } from './Header'
 import Entry from './Entry'
 import { startLogout } from '../actions/auth'
-import { getEntry, exitEntry } from "../actions/entry"
+import { getEntry } from "../actions/entry"
 import ActionButton from './ActionButton';
 
-class ReadPage extends React.Component {
+export class ReadPage extends React.Component {
     constructor(props) {
         super(props)
         this.componentDidMount = this.componentDidMount.bind(this)
@@ -40,7 +40,6 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProps = (dispatch) => ({
     getEntry: (uid, id) => dispatch(getEntry(uid, id)),
-    exitEntry: () => dispatch(exitEntry()),
     startLogout: () => dispatch(startLogout())
 })
 

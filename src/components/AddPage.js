@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import BlogForm from './BlogForm'
 import { addEntry } from '../actions/entry'
 
-const AddPage = (props) => (
+export const AddPage = (props) => (
     <div className='content-container'>
         <BlogForm onSubmit={props.addEntry} uid={props.auth.uid}/>
     </div>

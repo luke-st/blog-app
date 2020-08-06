@@ -2,6 +2,20 @@
 
 exports[`Should render HomePage correctly 1`] = `
 <div>
-  All public content here
+  <Connect(Header) />
+  <div
+    className="page-header"
+  >
+    <div
+      className="content-container"
+    >
+      <Connect(BlogListFilters) />
+    </div>
+  </div>
+  <div
+    className="content-container"
+  >
+    <Connect(BlogList) />
+  </div>
 </div>
 `;

@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Entry = (props) => (
+export const Entry = (props) => (
     <div>
         <div className='page-header'>
             <div className='content-container'>

@@ -5,7 +5,7 @@ import BlogList from './BlogList'
 import BlogListFilters from './BlogListFilters'
 import selectEntries from '../selectors/entries'
 
-const HomePage = (props) => (
+export const HomePage = (props) => (
     <div>
         <Header user={props.user} />
         <div className='page-header'>

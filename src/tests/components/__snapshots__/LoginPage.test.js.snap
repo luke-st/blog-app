@@ -22,17 +22,8 @@ exports[`should render LoginPage correctly 1`] = `
         >
           Login with Google
         </button>
-        <button
-          className="button"
-          onClick={[Function]}
-        >
-          Login/Create Account with Email
-        </button>
       </div>
     </div>
   </div>
-  <EmailModal
-    handleClearEmailPrompt={[Function]}
-  />
 </div>
 `;

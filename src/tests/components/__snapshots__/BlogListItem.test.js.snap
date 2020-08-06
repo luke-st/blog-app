@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render BlogListItem correctly 1`] = `
+<div>
+  <Link
+    style={
+      Object {
+        "textDecoration": "none",
+      }
+    }
+    to="read/testUID/testID"
+  >
+    <div
+      className="cell"
+    >
+      <span>
+        This is the title
+      </span>
+      <p>
+        This is the subtitle
+      </p>
+    </div>
+  </Link>
+</div>
+`;

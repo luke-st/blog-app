@@ -1,7 +1,6 @@
 import React from 'react'
 import { Router, Route, Switch } from "react-router-dom";
 import { createBrowserHistory } from 'history'
-import DashboardPage from '../components/DashboardPage';
 import NotFoundPage from '../components/NotFoundPage';
 import LoginPage from '../components/LoginPage';
 import PrivateRoute from './PrivateRoute'

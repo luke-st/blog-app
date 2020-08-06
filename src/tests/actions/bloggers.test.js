@@ -28,13 +28,12 @@ test('should setup set bloggers action object', () => {
 })
 
 test('should setup bloggers in store from database', (done) => {
-    const store = createMockStore()
-    store.dispatch(startSetBloggers()).then(() => {
-        const actions = store.getActions()
-        expect(actions[0]).toEqual({
-            type: 'SET_BLOGGERS',
-            bloggers: expect.any(Array)
-        })
-        done()
+    const store = createMockStore({ auth: {}, entries: {}, entry: {}, bloggers: {}, filters: {} })
+    store.dispatch(startSetBloggers())
+    const actions = store.getActions()
+    expect(actions[0]).toEqual({
+        type: 'SET_BLOGGERS',
+        bloggers: expect.any(Array)
     })
+    done()
 })

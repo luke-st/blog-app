@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render ReadPage correctly 1`] = `
+<div>
+  <Header
+    auth={
+      Object {
+        "uid": "testUID",
+      }
+    }
+  />
+  <Entry />
+</div>
+`;
+
+exports[`should render ReadPage correctly with edit button 1`] = `
+<div>
+  <Header
+    auth={
+      Object {
+        "uid": "postUID",
+      }
+    }
+  />
+  <Entry />
+  <Link
+    to="/edit/postUID/postID"
+  >
+    <div
+      className="fab-container"
+    >
+      <ActionButton />
+    </div>
+  </Link>
+</div>
+`;

@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render Entry correctly 1`] = `
+<div>
+  <div
+    className="page-header"
+  >
+    <div
+      className="content-container"
+    >
+      <h1
+        className="page-header__title"
+      >
+        This is the title
+      </h1>
+      <h3
+        className="page-header__subtitle"
+      >
+        This is the subtitle
+      </h3>
+    </div>
+  </div>
+  <div
+    className="content-container"
+  >
+    <div
+      className="entry"
+    >
+      <p>
+        This is the body
+      </p>
+    </div>
+  </div>
+</div>
+`;

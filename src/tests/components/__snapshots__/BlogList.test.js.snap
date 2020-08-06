@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render BlogList correctly 1`] = `
+<div
+  className="content-container"
+>
+  <div
+    className="grid"
+  >
+    <div
+      className="list-item list-item--message list-item--full-length"
+    >
+      <span>
+        No posts found 👀
+      </span>
+    </div>
+  </div>
+</div>
+`;

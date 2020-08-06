@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render BlogForm correctly 1`] = `
+<div>
+  <form
+    className="form"
+    onSubmit={[Function]}
+  >
+    <input
+      autoFocus={true}
+      className="text-input"
+      onChange={[Function]}
+      placeholder="Title"
+      type="text"
+      value=""
+    />
+    <input
+      autoFocus={true}
+      className="text-input"
+      onChange={[Function]}
+      placeholder="Subtitle"
+      type="text"
+      value=""
+    />
+    <textarea
+      className="textarea"
+      onChange={[Function]}
+      placeholder="Write your post here!"
+      value=""
+    />
+    <div>
+      <button
+        className="button"
+      >
+        Save entry
+      </button>
+    </div>
+  </form>
+  <div>
+    <div>
+      <RemoveModal
+        handleClearPromptRemove={[Function]}
+        onRemoveConfirm={[Function]}
+      />
+    </div>
+  </div>
+</div>
+`;
