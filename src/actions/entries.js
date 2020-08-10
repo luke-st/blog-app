@@ -13,7 +13,29 @@ export const getBloggerEntries = (uid) => {
     return (dispatch) => {
         return database.ref(`users/${uid}/posts`).once('value').then((snapshot) => {
             const entries = []
-    
+
+            snapshot.forEach((entry) => {
+                const id = entry.key
+                entry = entry.val()
+                if (!entry.isPrivate) {
+                    entries.push({
+                        uid,
+                        id,
+                        title: entry.title,
+                        subtitle: entry.subtitle
+                    })
+                }
+            })
+            dispatch(setEntries(entries))
+        })
+    }
+}
+
+export const getAllBloggerEntries = (uid) => {
+    return (dispatch) => {
+        return database.ref(`users/${uid}/posts`).once('value').then((snapshot) => {
+            const entries = []
+
             snapshot.forEach((entry) => {
                 const id = entry.key
                 entry = entry.val()
@@ -28,4 +50,3 @@ export const getBloggerEntries = (uid) => {
         })
     }
 }
-

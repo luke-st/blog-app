@@ -141,6 +141,16 @@ exports[`should render BlogListFilters correctly 1`] = `
   </div>
   <div
     className="page-header__title"
-  />
+  >
+    <div>
+      <p>
+        <input
+          onClick={[Function]}
+          type="checkbox"
+        />
+         Show Private Entries
+      </p>
+    </div>
+  </div>
 </div>
 `;

@@ -14,12 +14,26 @@ export const startSetBloggers = () => {
                 const uid = blogger.key
                 blogger = blogger.val()
                 const name = blogger.name
-                let posts
+                let allPosts
                 if (!blogger.posts) {
-                    posts = {}
+                    allPosts = {}
                 } else {
-                    posts = blogger.posts
+                    allPosts = blogger.posts
                 }
+                let posts
+                for (const property in allPosts) {
+                    if (!allPosts[property].isPrivate) {
+                        let post = allPosts[property]
+                        posts = {
+                            ...posts,
+                            [property]: post
+                        }
+                    } else {
+                        posts = {
+                            ...posts
+                        }
+                    }
+                  }
                 const postsLength = Object.keys(posts).length
                 bloggers.push({
                     uid,

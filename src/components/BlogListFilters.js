@@ -1,5 +1,5 @@
 import React from 'react'
-import { getBloggerEntries, resetEntries } from '../actions/entries'
+import { getBloggerEntries, getAllBloggerEntries, resetEntries } from '../actions/entries'
 import { connect } from 'react-redux'
 import { setTextFilter, setEndDate, setStartDate, setUID } from '../actions/filters'
 import { DateRangePicker } from 'react-dates'
@@ -21,6 +21,14 @@ export class BlogListFilters extends React.Component {
         const uid = e.target.value
         this.setState({ activeBlogger:uid })
         this.props.getBloggerEntries(uid)
+    }
+    onPrivateToggle = (e) => {
+        const isChecked = e.target.checked
+        if (isChecked) {
+            this.props.getAllBloggerEntries(this.state.activeBlogger)
+        } else {
+            this.props.getBloggerEntries(this.state.activeBlogger)
+        }
     }
     onTextChange = (e) => {
         this.props.setTextFilter(e.target.value)
@@ -71,10 +79,16 @@ export class BlogListFilters extends React.Component {
                 <div className='page-header__title'>
                 {this.props.bloggers.map((blogger) => blogger.uid === this.state.activeBlogger ? (
                     <div key={blogger.uid}>
-                    <p><span>{blogger.name.split(' ')[0]}</span> has <span>{blogger.posts}</span> post{blogger.posts === 1 ? '' : 's'}</p>
+                    <p><span>{blogger.name.split(' ')[0]}</span> has <span>{blogger.posts}</span> public post{blogger.posts === 1 ? '' : 's'}</p>
                     </div>
                 ) : null
                 )}
+                {this.state.activeBlogger === this.props.auth.uid ? (
+                    <div>
+                    <p><input type='checkbox' onClick={this.onPrivateToggle} /> Show Private Entries</p>
+                    </div>
+                ) : null
+            }
                 </div>
             </div>
         )
@@ -90,6 +104,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchtoProps = (dispatch) => ({
     getBloggerEntries: (uid) => dispatch(getBloggerEntries(uid)),
+    getAllBloggerEntries: (uid) => dispatch(getAllBloggerEntries(uid)),
     setTextFilter: (text) => dispatch(setTextFilter(text)),
     setStartDate: (startDate) => dispatch(setStartDate(startDate)),
     setEndDate: (endDate) => dispatch(setEndDate(endDate)),

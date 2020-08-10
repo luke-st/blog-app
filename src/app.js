@@ -10,6 +10,7 @@ import 'normalize.css/normalize.css'
 import './styles/styles.scss'
 import { firebase } from './firebase/firebase'
 import { startSetBloggers } from './actions/bloggers'
+import { getEntry } from './actions/entry'
 
 const store = configureStore()
 
@@ -36,6 +37,9 @@ firebase.auth().onAuthStateChanged((user) => {
         store.dispatch(login(user.uid, user.displayName.split(' ')))
         accountCheck(user.uid, user.displayName)
         renderApp()
+        if (history.location.pathname.includes('/edit') && history.action === 'POP') {
+            history.push('/')
+        }
     } else {
         store.dispatch(logout())
         renderApp()

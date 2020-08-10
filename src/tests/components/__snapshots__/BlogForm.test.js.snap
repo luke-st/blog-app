@@ -28,6 +28,22 @@ exports[`should render BlogForm correctly 1`] = `
       placeholder="Write your post here!"
       value=""
     />
+    <div
+      className="page-header__title"
+    >
+      <p>
+        <input
+          defaultChecked={false}
+          onClick={[Function]}
+          type="checkbox"
+        />
+         Private (Public 
+        <span>
+          can
+        </span>
+         view this)
+      </p>
+    </div>
     <div>
       <button
         className="button"

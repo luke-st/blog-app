@@ -12,6 +12,7 @@ export default class BlogForm extends React.Component {
             body: props.entry ? props.entry.body : '',
             subtitle: props.entry ? props.entry.subtitle : '',
             createdAt: props.entry ? moment(props.entry.createdAt) : moment(),
+            isPrivate: props.entry ? props.entry.isPrivate : false,
             error: '',
             promptRemove: undefined
         }
@@ -28,6 +29,10 @@ export default class BlogForm extends React.Component {
         const subtitle = e.target.value
         this.setState(() => ({ subtitle }))
     }
+    onPrivateToggle = (e) => {
+        const isChecked = e.target.checked
+        this.setState({ isPrivate: isChecked })
+    }
     onSubmit = (e) => {
         e.preventDefault()
         const uid = this.props.uid
@@ -39,7 +44,8 @@ export default class BlogForm extends React.Component {
                 title: this.state.title,
                 subtitle: this.state.subtitle,
                 createdAt: this.state.createdAt.valueOf(),
-                body: this.state.body
+                body: this.state.body,
+                isPrivate: this.state.isPrivate
             }
             this.props.onSubmit(uid, post)
             history.push('/')
@@ -54,6 +60,11 @@ export default class BlogForm extends React.Component {
     onRemoveConfirm = () => {
         this.props.removeEntry(this.props.uid, this.props.id)
         this.props.history.push('/')
+    }
+    componentDidMount = () => {
+        if (this.props.entry === {}) {
+            this.forceUpdate()
+        }
     }
     render() {
         return (
@@ -83,6 +94,9 @@ export default class BlogForm extends React.Component {
                         onChange={this.onBodyChange}
                     >
                     </textarea>
+                    <div className='page-header__title'>
+                    <p><input type='checkbox' onClick={this.onPrivateToggle} defaultChecked={this.state.isPrivate} /> Private (Public <span>can{this.state.isPrivate ? 'not' : ''}</span> view this)</p>
+                    </div>
                     <div>
                         <button className='button'>Save entry</button>
                     </div>
