@@ -34,7 +34,7 @@ store.dispatch(startSetBloggers())
 firebase.auth().onAuthStateChanged((user) => {
     if (user) {
         store.dispatch(login(user.uid, user.displayName.split(' ')))
-        accountCheck(user.uid, user.displayName)
+        user.displayName === undefined ? console.error('This service requires you to have a Display Name set in your Google Account.') : accountCheck(user.uid, user.displayName)
         renderApp()
         if (history.location.pathname.includes('/edit') && history.action === 'POP') {
             history.push('/')

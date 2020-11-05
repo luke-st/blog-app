@@ -12,33 +12,37 @@ export const startSetBloggers = () => {
             snapshot.forEach((blogger) => {
                 const uid = blogger.key
                 blogger = blogger.val()
-                const name = blogger.name
-                let allPosts
-                if (!blogger.posts) {
-                    allPosts = {}
+                if (!blogger.name) {
+
                 } else {
-                    allPosts = blogger.posts
-                }
-                let posts = {}
-                for (const property in allPosts) {
-                    if (!allPosts[property].isPrivate) {
-                        let post = allPosts[property]
-                        posts = {
-                            ...posts,
-                            [property]: post
-                        }
+                    const name = blogger.name
+                    let allPosts
+                    if (!blogger.posts) {
+                        allPosts = {}
                     } else {
-                        posts = {
-                            ...posts
-                        }
+                        allPosts = blogger.posts
                     }
-                  }
-                const postsLength = Object.keys(posts).length
-                bloggers.push({
-                    uid,
-                    name,
-                    posts: postsLength
-                })
+                    let posts = {}
+                    for (const property in allPosts) {
+                        if (!allPosts[property].isPrivate) {
+                            let post = allPosts[property]
+                            posts = {
+                                ...posts,
+                                [property]: post
+                            }
+                        } else {
+                            posts = {
+                                ...posts
+                            }
+                        }
+                      }
+                    const postsLength = Object.keys(posts).length
+                    bloggers.push({
+                        uid,
+                        name,
+                        posts: postsLength
+                    })
+                }
             })
             dispatch(setBloggers(bloggers))
         })
